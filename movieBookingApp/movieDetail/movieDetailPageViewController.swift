@@ -23,9 +23,13 @@ class movieDetailPageViewController: UIViewController, movieDetailPageLogicDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .darkGray
-        self.setupNavigationBar()
         self.setupView()
         self.logic.getDetailData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.setupNavigationBar()
     }
     
     func setupNavigationBar() {
