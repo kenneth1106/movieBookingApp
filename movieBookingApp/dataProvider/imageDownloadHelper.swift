@@ -39,7 +39,7 @@ class imageDownloadHelper: NSObject {
         if imageName.elementsEqual(imageDownloadHelper.regular_size_prefix) == true || imageName.elementsEqual(imageDownloadHelper.small_size_prefix) == true {
             return
         }
-         
+        
         getData(from: URL(string: String(format: "%@/%@", imageDownloadHelper.imageEndpoint, imageName))!) { data, response, error in
             guard let data = data, error == nil else { return }
             DispatchQueue.main.async() {
