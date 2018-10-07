@@ -1,1 +1,7 @@
 movieBookingApp/Pods
+movieBookingApp/Build
+
+# Exclude OS X folder attributes
+.DS_Store
+movieBookingApp/HB_iOS_Consumer.xcodeproj/project.xcworkspace/xcuserdata/
+movieBookingApp.xcscmblueprint
