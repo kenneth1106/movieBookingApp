@@ -24,18 +24,17 @@ class movieListLogic: NSObject {
         }
         
         self.isLoading = true
-        weak var weakSelf = self
-        movieDataProvider.sharedProvider().getMovieListData(forPage: (self.currentMovieList?.page ?? 0) + 1, onSuccess: {(movieListResult) in
+        movieDataProvider.sharedProvider().getMovieListData(forPage: (self.currentMovieList?.page ?? 0) + 1, onSuccess: {[weak self](movieListResult) in
 //            print("!!!! load for page: ", weakSelf?.currentMovieList?.page as Any)
-            weakSelf?.isLoading = false
-            if weakSelf?.currentMovieList == nil {
-                weakSelf?.currentMovieList = movieListResult
-                weakSelf!.delegate?.reloadMoiveList()
+            self?.isLoading = false
+            if self?.currentMovieList == nil {
+                self?.currentMovieList = movieListResult
+                self?.delegate?.reloadMoiveList()
                 return
             }
-            weakSelf!.currentMovieList!.page = movieListResult.page
-            weakSelf!.currentMovieList!.results! += movieListResult.results!
-            weakSelf!.delegate?.reloadMoiveList()
+            self?.currentMovieList!.page = movieListResult.page
+            self?.currentMovieList!.results! += movieListResult.results!
+            self?.delegate?.reloadMoiveList()
         }, onFailure: {(Error) in
             
         })

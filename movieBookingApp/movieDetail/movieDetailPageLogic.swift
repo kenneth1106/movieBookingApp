@@ -18,10 +18,9 @@ class movieDetailPageLogic: NSObject {
     var delegate:movieDetailPageLogicDelegate?
     
     func getDetailData() {
-        weak var weakSelf = self
-        movieDataProvider.sharedProvider().getMovieDetailData(forMovieId: String(self.movieId), onSuccess: {(movieDetailResponse) in
-            weakSelf?.movieDetailData = movieDetailResponse
-            weakSelf?.delegate?.reloadMoiveDetailPage()
+        movieDataProvider.sharedProvider().getMovieDetailData(forMovieId: String(self.movieId), onSuccess: {[weak self](movieDetailResponse) in
+            self?.movieDetailData = movieDetailResponse
+            self?.delegate?.reloadMoiveDetailPage()
         }, onFailure: {(Error) in
             
         })
